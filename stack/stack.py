@@ -14,7 +14,7 @@ return elements in Last In First Out order.
    arrays remove the value from the beginning and shift the values, while linked lists simply
    replace the head with the next value.
 """
-from doubly_linked_list import doubly_linked_list
+from queue import doubly_linked_list
 
 
 class Stack:
