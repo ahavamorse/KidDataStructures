@@ -9,11 +9,15 @@ return elements in First In First Out order.
    Make sure the Queue tests pass.
 3. What is the difference between using an array vs. a linked list when 
    implementing a Queue?
+   When enqueueing with arrays simply appending the value is enough; with linked lists
+   the value needs to be added to the tail and the pointers taken care of. When dequeueing
+   with arrays the value and index 0 is removed and the other elements shifted; linked lists
+   remove the head and take care of the pointers.
    
 Stretch: What if you could only use instances of your Stack class to implement the Queue?
          What would that look like? How many Stacks would you need? Try it!
 """
-from doubly_linked_list import doubly_linked_list
+import doubly_linked_list.doubly_linked_list
 
 
 class Queue:
