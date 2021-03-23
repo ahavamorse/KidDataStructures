@@ -9,6 +9,10 @@ return elements in Last In First Out order.
    Make sure the Stack tests pass.
 3. What is the difference between using an array vs. a linked list when 
    implementing a Stack?
+   When pushing in a Stack, arrays must insert values at index = 0 and shift the other values
+   while linked lists insert it as the new head that points to the old head. When popping
+   arrays remove the value from the beginning and shift the values, while linked lists simply
+   replace the head with the next value.
 """
 from doubly_linked_list import doubly_linked_list
 
