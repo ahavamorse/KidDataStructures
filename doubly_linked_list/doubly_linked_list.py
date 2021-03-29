@@ -232,10 +232,14 @@ class DoublyLinkedList:
         pass
     
     def remove_from_head(self):
-        pass
+        value = self.head.value
+        self.delete(self.head)
+        return value
     
     def remove_from_tail(self):
-        pass
+        value = self.tail.value
+        self.delete(self.tail)
+        return value
     
     def move_to_front(self, node):
         pass
