@@ -2,6 +2,7 @@
 Each ListNode holds a reference to its previous node
 as well as its next node in the List.
 """
+''' # This was done in class
 class ListNode:
     def __init__(self, value, prev=None, next=None):
         self.prev = prev
@@ -158,15 +159,48 @@ class DoublyLinkedList:
                 max = current_node.value
         return max
 
-first_node = ListNode(100)
-linked_list = DoublyLinkedList(first_node)
-linked_list.add_to_head(1)
-linked_list.add_to_head(2)
-linked_list.add_to_head(3)
-linked_list.add_to_head(5)
-linked_list.delete(first_node)
-linked_list.remove_from_head()
-linked_list.print()
-print(linked_list.head)
-print('-------------')
-print(len(linked_list))
+
+# Singly Linked List Implementation on my own
+class ListNode:
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next = next
+
+    def __str___(self):
+        return str(self.value)
+
+
+class LinkedList:
+    def __init__(self, node=node):
+        self.head = node
+        self.tail = node
+        self.size = 1 if not Node else 0
+
+    def __len__(self):
+        return self.size
+
+    def add_to_head(self, value):
+        new_node = ListNode(value)
+        if self.size == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+
+    def add_to_tail(self, value):
+        new_node = ListNode(value)
+        if self.size == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+
+    def remove_from_head(self, node):
+        old_head = self.head
+        self.head = self.head.next
+        return old_head
+'''
+
+# Doubly Linked List Implemented on my own
