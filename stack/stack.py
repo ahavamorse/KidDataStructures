@@ -16,7 +16,6 @@ return elements in Last In First Out order.
 """
 import doubly_linked_list.doubly_linked_list
 
-
 class Stack:
     def __init__(self):
         self.size = 0
@@ -32,7 +31,7 @@ class Stack:
 
     def push(self, value):
         """ # Array
-        if not self.storage:
+        if self.size == 0:
             self.storage = [value]
         else:
             self.storage.insert(0, value)
@@ -44,15 +43,15 @@ class Stack:
 
     def pop(self):
         """ # Array
-        if not self.storage:
+        if self.size == 0:
             return None
-        value = self.storage[0]
-        self.storage.remove(value)
-        self.size -= 1
-        return value
+        value = self.storage[0]     # Could just use pop(0) method of the array for these two lines
+        self.storage.remove(value)  # pop(0) removes the first element and returns the value
+        self.size -= 1              # Could also treat the end of the array as the top and append to
+        return value                # and remove elements from the end (not faster because needs a new array)
         """
         # Linked List
-        if not self.storage:
+        if self.size == 0:      # Take advantage of the size variable we have here
             return None
         self.size -= 1
         return self.storage.remove_from_head()

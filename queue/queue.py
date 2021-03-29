@@ -34,27 +34,27 @@ class Queue:
 
     def enqueue(self, value):
         """ # Array
-        if not self.storage:
+        if self.size == 0:
             self.storage = [value]
         else:
             self.storage.append(value)
         self.size += 1
         """
         # Linked List
-        self.storage.add_to_tail(value)
-        self.size += 1
+        self.storage.add_to_tail(value)     # With a doubly linked list we can add to head or tail
+        self.size += 1                      # but with a singly linked list we must add to tail
 
     def dequeue(self):
         """ # Array
-        if not self.storage:
+        if self.size == 0:
             return None
         value = self.storage[0]
-        self.storage.remove(value)
+        self.storage.remove(value) # Could use pop(0) here
         self.size -= 1
         return value
         """
         # Linked List
-        if not self.storage:
+        if self.size == 0:
             return None
-        self.size -= 1
-        return self.storage.remove_from_head()
+        self.size -= 1                              # With a doubly linked list we can remove from head or tail
+        return self.storage.remove_from_head()      # but with a singly linked list we must remove from head
