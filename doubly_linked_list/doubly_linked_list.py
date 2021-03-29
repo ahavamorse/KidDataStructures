@@ -258,7 +258,7 @@ class DoublyLinkedList:
         self.add_to_tail(node.value)
     
     def delete(self, node):
-        if not self.head and not self.tail:
+        if not self.head and not self.tail: # Empty List
             return
 
         self.size -= 1
@@ -274,7 +274,13 @@ class DoublyLinkedList:
             node.next.prev = node.prev
     
     def get_max(self):
-        pass
+        max = self.head.value
+        current_node = self.head
+        while current_node.next:
+            current_node = current_node.next
+            if current_node.value > max:
+                max = current_node.value
+        return max
 
 import unittest
 
