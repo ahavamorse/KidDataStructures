@@ -65,11 +65,26 @@ class BSTNode:
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        # If has right child
+        if self.right:
+            # Ask child to find max
+            return self.right.get_max()
+        # Else is max
+        else:
+            return self.value
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        # Call function on self
+        fn(self.value)
+        # Check for left child
+        if self.left:
+            # Ask left child to call function
+            self.left.for_each(fn)
+        # Check for right child
+        if self.right:
+            # Ask right child to call function
+            self.right.for_each(fn)
 
     # Part 2 -----------------------
 
@@ -121,4 +136,5 @@ bst.pre_order_dft()
 print("in order")
 bst.in_order_dft()
 print("post order")
-bst.post_order_dft()  
+bst.post_order_dft()
+
