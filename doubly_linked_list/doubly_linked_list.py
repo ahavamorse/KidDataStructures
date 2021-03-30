@@ -322,6 +322,10 @@ class DoublyLinkedList:
             node.delete()
     
     def get_max(self):
+        # Check for empty List
+        if not self.head:
+            return None
+
         max_value = self.head.value
         current_node = self.head
         while current_node.next:
