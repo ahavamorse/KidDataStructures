@@ -25,7 +25,7 @@ class BSTNode:
                 self.left.insert(value)
             # Else doesn't have a left child
             else:
-                self.left = value
+                self.left = BSTNode(value)
         # If value is larger and belongs on the right
         elif value >= self.value:
             # If already has a right child
@@ -34,7 +34,7 @@ class BSTNode:
                 self.right.insert(value)
             # Else doesn't have a right child
             else:
-                self.right = value
+                self.right = BSTNode(value)
 
     # Return True if the tree contains the value
     # False if it does not
@@ -76,7 +76,7 @@ class BSTNode:
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
         # Call function on self
-        fn(self.value)
+        self.value = fn(self.value)
         # Check for left child
         if self.left:
             # Ask left child to call function
@@ -137,4 +137,3 @@ print("in order")
 bst.in_order_dft()
 print("post order")
 bst.post_order_dft()
-
