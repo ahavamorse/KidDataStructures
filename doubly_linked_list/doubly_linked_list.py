@@ -206,6 +206,7 @@ class LinkedList:
         return old_head
 '''
 
+
 # Doubly Linked List Implemented on my own
 class ListNode:
     def __init__(self, value, next=None, prev=None):
@@ -215,7 +216,14 @@ class ListNode:
     
     def __str__(self):
         return str(self.value)
-    
+
+    def delete(self):
+        if self.prev:
+            self.prev.next = self.next
+        if self.next:
+            self.next.prev = self.prev
+
+
 class DoublyLinkedList:
     def __init__(self, node=None):
         self.head = node
@@ -229,10 +237,10 @@ class DoublyLinkedList:
         self.size += 1
         new_node = ListNode(value)
         
-        if not self.head and not self.tail:
+        if not self.head and not self.tail:  # Empty List
             self.head = new_node
             self.tail = new_node
-        else:
+        else:   # List contains at least one element
             new_node.next = self.head
             self.head.prev = new_node
             self.head = new_node
@@ -250,44 +258,78 @@ class DoublyLinkedList:
             self.tail = new_node
     
     def remove_from_head(self):
-        value = self.head.value
+        # Check for empty list
+        if not self.head:
+            return None
+
+        head_value = self.head.value
         self.delete(self.head)
-        return value
+        return head_value
     
     def remove_from_tail(self):
-        value = self.tail.value
+        # Check for empty list
+        if not self.head:
+            return None
+
+        tail_value = self.tail.value
         self.delete(self.tail)
-        return value
+        return tail_value
     
     def move_to_front(self, node):
+        # This saves time if already at the front
+        if node == self.head:
+            return
+
         self.delete(node)
         self.add_to_head(node.value)
     
     def move_to_end(self, node):
+        # This saves time if already at the end
+        if node == self.tail:
+            return
+
         self.delete(node)
         self.add_to_tail(node.value)
     
     def delete(self, node):
-        if not self.head and not self.tail: # Empty List
+        if not self.head and not self.tail:  # Empty List
             return
 
         self.size -= 1
-        if node == self.head and node == self.tail: # Only node in list
+        if node == self.head and node == self.tail:  # Only one node in list
             self.head = None
             self.tail = None
-        elif node == self.head: # Node is head
+
+        elif node == self.head:  # Node is only head
             self.head = node.next
-        elif node == self.tail: # Node is tail
+            # Added this to keep the head from still pointing back at 'deleted' node
+            self.head.prev = None
+            # Added this to remove the pointers of the node being deleted
+            node.delete()
+
+        elif node == self.tail:  # Node is only tail
             self.tail = node.prev
-        else:                   # Node is none of the above
+            # Added this to keep the head from still pointing to 'deleted' node
+            self.tail.next = None
+            # Added this to remove the pointers of the node being deleted
+            node.delete()
+
+        else:
+            # Node is none of the above (Also should check that the node is in the list
             node.prev.next = node.next
             node.next.prev = node.prev
+            # Added this to remove the pointers of the node being deleted
+            node.delete()
     
     def get_max(self):
-        max = self.head.value
+        # Check for empty List
+        if not self.head:
+            return None
+
+        max_value = self.head.value
         current_node = self.head
         while current_node.next:
             current_node = current_node.next
-            if current_node.value > max:
-                max = current_node.value
-        return max
+            if current_node.value > max_value:
+                max_value = current_node.value
+        return max_value
