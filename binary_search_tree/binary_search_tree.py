@@ -107,11 +107,21 @@ class BSTNode:
     def bft_print(self):
         pass
         # Create a queue to keep track of nodes
+        queue = []
         # Add the first node to the queue
+        queue.append(self)
         # While the queue is not empty
+        while queue:
             # Remove the first node from the queue
+            current_node = queue[0]
+            queue.pop(0)
             # Print the removed node
-            # Add the node's children to the queue
+            print(current_node.value)
+            # Add the node's children to the end of the queue
+            if current_node.left:
+                queue.append(current_node.left)
+            if current_node.right:
+                queue.append(current_node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
@@ -121,12 +131,13 @@ class BSTNode:
             self.left.dft_print()
         if self.right:
             self.right.dft_print()
-        # Could use a stack here:
+        # Could also use a stack here:
         # Create a stack and add the first node
         # While the stack is not empty
             # Remove the first node from the top of the stack
             # Print the removed node
-            # Add the node's children to the stack
+            # Add the node's children to the top of the stack
+            # Order matters and will be reversed in order
 
     # Stretch Goals -------------------------
     # Note: Research may be required
@@ -205,13 +216,13 @@ class BinarySearchTreeTests(unittest.TestCase):
 
         output = sys.stdout.getvalue()
         self.assertEqual(output, "1\n2\n3\n4\n5\n6\n7\n8\n")
-        '''
+
         sys.stdout = io.StringIO()
         self.bst.bft_print()
         output = sys.stdout.getvalue()
         self.assertTrue(output == "1\n8\n5\n3\n7\n2\n4\n6\n" or
                         output == "1\n8\n5\n7\n3\n6\n4\n2\n")
-        '''
+
         sys.stdout = io.StringIO()
         self.bst.dft_print()
         output = sys.stdout.getvalue()
