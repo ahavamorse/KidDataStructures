@@ -95,7 +95,11 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
-        pass
+        if self.left:
+            self.left.in_order_print()
+        print(self.value)
+        if self.right:
+            self.right.in_order_print()
         # if no left child, print self, then print right subtree
 
     # Print the value of every node, starting with the given node,
@@ -120,7 +124,6 @@ class BSTNode:
     def post_order_dft(self):
         pass
 
-
 """
 This code is necessary for testing the `print` methods
 """
@@ -144,3 +147,76 @@ print("in order")
 bst.in_order_print()
 print("post order")
 bst.post_order_dft()
+
+import unittest
+import random
+import sys
+import io
+
+class BinarySearchTreeTests(unittest.TestCase):
+    def setUp(self):
+        self.bst = BSTNode(5)
+
+    def test_insert(self):
+        self.bst.insert(2)
+        self.bst.insert(3)
+        self.bst.insert(7)
+        self.bst.insert(6)
+        self.assertEqual(self.bst.left.right.value, 3)
+        self.assertEqual(self.bst.right.left.value, 6)
+
+    def test_handle_dupe_insert(self):
+        self.bst2 = BSTNode(1)
+        self.bst2.insert(1)
+        self.assertEqual(self.bst2.right.value, 1)
+
+    def test_print_traversals(self):
+        # WARNING:  Tests are for Print()
+        # Debug calls to Print() in functions will cause failure
+
+        stdout_ = sys.stdout  # Keep previous value
+        sys.stdout = io.StringIO()
+
+        self.bst = BSTNode(1)
+        self.bst.insert(8)
+        self.bst.insert(5)
+        self.bst.insert(7)
+        self.bst.insert(6)
+        self.bst.insert(3)
+        self.bst.insert(4)
+        self.bst.insert(2)
+
+        self.bst.in_order_print()
+
+        output = sys.stdout.getvalue()
+        self.assertEqual(output, "1\n2\n3\n4\n5\n6\n7\n8\n")
+        '''
+        sys.stdout = io.StringIO()
+        self.bst.bft_print()
+        output = sys.stdout.getvalue()
+        self.assertTrue(output == "1\n8\n5\n3\n7\n2\n4\n6\n" or
+                        output == "1\n8\n5\n7\n3\n6\n4\n2\n")
+        '''
+        sys.stdout = io.StringIO()
+        self.bst.dft_print()
+        output = sys.stdout.getvalue()
+        self.assertTrue(output == "1\n8\n5\n7\n6\n3\n4\n2\n" or
+                        output == "1\n8\n5\n3\n2\n4\n7\n6\n")
+
+    '''
+        sys.stdout = io.StringIO()
+        self.bst.pre_order_dft()
+        output = sys.stdout.getvalue()
+        self.assertEqual(output, "1\n8\n5\n3\n2\n4\n7\n6\n")
+
+        sys.stdout = io.StringIO()
+        self.bst.post_order_dft()
+        output = sys.stdout.getvalue()
+        self.assertEqual(output, "2\n4\n3\n6\n7\n5\n8\n1\n")
+
+        sys.stdout = stdout_  # Restore stdout
+'''
+
+
+if __name__ == '__main__':
+    unittest.main()
