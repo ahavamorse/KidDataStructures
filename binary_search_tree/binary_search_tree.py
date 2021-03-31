@@ -106,7 +106,12 @@ class BSTNode:
     # in an iterative breadth first traversal
     def bft_print(self):
         pass
-        # left subtree then right subtree (if no children print self)
+        # Create a queue to keep track of nodes
+        # Add the first node to the queue
+        # While the queue is not empty
+            # remove the first node from the queue
+            # print the removed node
+            # add the node's children to the queue
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
@@ -122,11 +127,11 @@ class BSTNode:
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self):
-        pass
+        pass  # root, left, right
 
     # Print Post-order recursive DFT
     def post_order_dft(self):
-        pass
+        pass  # left, right, root
 
 """
 This code is necessary for testing the `print` methods
