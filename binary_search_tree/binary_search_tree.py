@@ -109,9 +109,9 @@ class BSTNode:
         # Create a queue to keep track of nodes
         # Add the first node to the queue
         # While the queue is not empty
-            # remove the first node from the queue
-            # print the removed node
-            # add the node's children to the queue
+            # Remove the first node from the queue
+            # Print the removed node
+            # Add the node's children to the queue
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
@@ -121,6 +121,12 @@ class BSTNode:
             self.left.dft_print()
         if self.right:
             self.right.dft_print()
+        # Could use a stack here:
+        # Create a stack and add the first node
+        # While the stack is not empty
+            # Remove the first node from the top of the stack
+            # Print the removed node
+            # Add the node's children to the stack
 
     # Stretch Goals -------------------------
     # Note: Research may be required
